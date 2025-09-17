@@ -1,4 +1,6 @@
 def select_dish(foods, selected_food):
+    if  selected_food < 0:
+        raise IndexError("Please input number between 1-5")
     print(f"Ah, {foods[selected_food]}! An excellent choice!")
 
 def your_menu(foods):
@@ -9,10 +11,16 @@ def your_menu(foods):
             index += 1
     
         selected_choice = int(input("Your order number? "))
+        # if type(input("Your order number? ")) is not int:
+        #     raise ValueError
         select_dish(foods, selected_choice - 1)
+
     except IndexError as error:
         print(f"{error} was entered.")
         print("Next time try entering something on the menu!")
+
+    except ValueError as error:
+        print("Please put a number")
 
 menu_items = [
     "Yakisoba",
@@ -23,4 +31,4 @@ menu_items = [
 ]
 
 your_menu(menu_items)
-print("Yum!")
+# print("Yum!")
